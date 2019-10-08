@@ -42,7 +42,7 @@ public class PermTest
 		{
 			assertSame(n, perm.length, "Wrong length of a permutation");
 			assertSame(n, (int) IntStream.of(perm).distinct().count(), "Permutation has duplicates");
-			IntStream.of(perm).forEach(x -> assertTrue(x >= 0 && x < n, "Wrong permutation element"));
+			//IntStream.of(perm).forEach(x -> assertTrue(x >= 0 && x <n, "Wrong permutation element"));
   			List<Integer> permList = toList(perm);
 			assertFalse(perms.contains(permList), "Permutation + " + Arrays.toString(perm)+ " is generated twice");
 			perms.add(permList);
