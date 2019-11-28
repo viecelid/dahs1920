@@ -8,7 +8,14 @@ public class InsertSort
 	 */
 	public static void sort(int[] array)
 	{
-		// TODO
+		int lenA=array.length;
+		//mit jedem Schritt wächst der Bereich in den wir die zu sortierenden Zahl einordnen wollen
+
+		for (int k=0;k<=lenA-1;k++){
+			sort(array,0,k);
+			System.out.print(" "+array[k]);
+		}
+
 	}
 	
 	/**
@@ -20,6 +27,15 @@ public class InsertSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
+		//int insert=array[end];
+		for (int i=start; i<=end; i++){
+			if (array[end]<array[i]){
+				//füge anstelle des Wertes ein und update das lokale Ende des Arrays mit dem grössten Wert
+				int temp=array[i];
+				array[i]=array[end];
+				array[end]=temp;
+			}
+		}
 		// TODO
 	}
 
