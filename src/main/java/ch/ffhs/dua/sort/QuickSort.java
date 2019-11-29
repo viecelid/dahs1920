@@ -9,7 +9,9 @@ public class QuickSort
 	 */
 	public static void sort(int[] array)
 	{
-		// TODO
+		if (array.length>1){
+			sort(array,0,array.length-1);
+		}
 	}
 	
 	/**
@@ -20,7 +22,69 @@ public class QuickSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
-		// TODO
+		if ((end-start)>=1){
+			//Pivot nimm den mittleren Wert von links, mitte, rechts (ordne zuerst die 3 Werte)
+			//Achtung int/int ist in Java int. Sprich Division ohne Rest
+			int mid=((start+end)+1)/2;
+			//Mitte justieren
+			if (array[start]>array[mid]){
+				int t=array[start];
+				array[start]=array[mid];
+				array[mid]=t;
+			}
+			if(array[mid]>array[end]){
+				int t=array[mid];
+				array[mid]=array[end];
+				array[end]=t;
+				//falls mid auch kleiner als start nachdem getauscht wurde
+				if (array[start]>array[mid]){
+					t=array[start];
+					array[start]=array[mid];
+					array[mid]=t;
+				}
+			}
+
+
+
+			//array für links kleiner und rechts grössere Werte als Pivot Zahl
+			Integer[] temparray=new Integer[(end-start)+1];
+			int og_r=end-start;
+			int ug_l=0;
+			int pivotValue=array[mid];
+			for (int i=start;i<=end; i++) {
+
+				if (array[i] > pivotValue) {
+					temparray[og_r]=array[i];
+					og_r--;
+				}
+				if (array[i]<pivotValue) {
+					temparray[ug_l]=array[i];
+					ug_l++;
+				}
+			}
+			//temporäres Array zurückschreiben. Wenn der Mittlere Wert vorkommt wurde er nicht geschrieben
+			//dort ist das temparray noch empty (darum Typ Integer genommen, um null testen zu können
+			//todo: mitte Anpassen wenn lange kein Value gefunden wird
+			for (int i=start;i<=end;i++){
+				if (temparray[i-start]!=null) {
+					//System.out.print(" not null--> "+temparray[i-start]+" value: "+(i-start));
+					array[i] = temparray[i-start];
+				}
+				else{
+					//todo: dieses i sollte neu als Mitte gebraucht werden
+					array[i]=pivotValue;
+					mid=i; //unbedingt die Wahre neue Mitte setzen
+				}
+			}
+			//...nach diesem vertauschen steht der Mittlere Wert in der Mitte
+			//linke Seite
+			if ((end-start)>1) {
+				sort(array, start, mid-1);
+				//rechte Seite
+				sort(array, mid+1, end);
+			}
+		}
+
 	}
 	
 	/** 

@@ -13,7 +13,7 @@ public class InsertSort
 
 		for (int k=0;k<=lenA-1;k++){
 			sort(array,0,k);
-			System.out.print(" "+array[k]);
+			//System.out.print(" "+array[k]);
 		}
 
 	}
